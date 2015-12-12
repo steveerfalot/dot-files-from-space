@@ -1,0 +1,19 @@
+<template name="des" value="describe('$type$: $name$', function() {&#10;    &#10;    $END$&#10;    &#10;});" description="describe block" toReformat="false" toShortenFQNames="true">
+  <variable name="type" expression="" defaultValue="" alwaysStopAt="true" />
+  <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+  <context>
+    <option name="JAVA_SCRIPT" value="true" />
+    <option name="JS_EXPRESSION" value="true" />
+    <option name="JSX_HTML" value="true" />
+    <option name="JS_STATEMENT" value="true" />
+  </context>
+</template>
+<template name="it" value="it('should $description$', function() {&#10;    //arrange&#10;    $END$&#10;    //act&#10;    &#10;    //assert&#10;    &#10;});" description="it block" toReformat="false" toShortenFQNames="true">
+  <variable name="description" expression="" defaultValue="" alwaysStopAt="true" />
+  <context>
+    <option name="JAVA_SCRIPT" value="true" />
+    <option name="JS_EXPRESSION" value="true" />
+    <option name="JSX_HTML" value="true" />
+    <option name="JS_STATEMENT" value="true" />
+  </context>
+</template>
