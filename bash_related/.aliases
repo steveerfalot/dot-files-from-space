@@ -1,0 +1,8 @@
+#git aliases
+alias gts="git status"
+alias gta="git add --all"
+alias gp="git stash && git pull && git stash pop"
+
+#shortcuts
+alias c="clear"
+alias ll="ls -alF"
