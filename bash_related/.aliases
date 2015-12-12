@@ -5,4 +5,6 @@ alias gp="git stash && git pull && git stash pop"
 
 #shortcuts
 alias c="clear"
-alias ll="ls -alF"
+alias ll='ls -alF --group-directories-first'
+alias la='ls -A'
+alias l='ls -CF'
