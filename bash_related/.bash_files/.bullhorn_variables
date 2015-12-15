@@ -1,0 +1,19 @@
+echo 'executing ~/.bash_files/.bullhorn_variables'
+
+#Bullhorn Variables
+export BASE="/workspace/bullhorn/bh-env"
+export MONTAGE_HOME="$BASE/montage"
+export STRIPES_HOME="$BASE/stripesjs"
+
+#Environment/Build Variables
+export DEV_TOOLS=/devTools
+export ANT_HOME=/usr/bin/ant
+export ANT_ARGS="-noclasspath -lib $HOME/antlib"
+export JAVA_OPTS=-Dbullhorn.sandbox=dev
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
+export JDK_HOME=/usr/lib/jvm/java-8-oracle
+export GRADLE_HOME=$DEV_TOOLS/gradle-1.11/bin
+export GRAILS_HOME=$DEV_TOOLS/grails-2.1.5
+
+#Add executables to PATH
+export PATH=$PATH:~/npm/bin:$Ant_home:$GRADLE_HOME:$GRADLE_HOME/bin:/opt/SenchaSDKTools-2.0.0-beta3

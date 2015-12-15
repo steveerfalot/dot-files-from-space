@@ -1,0 +1,84 @@
+echo 'executing ~/.bash_files/.aliases'
+
+#Bullhorn Variables
+export BASE="/workspace/bullhorn/bh-env"
+export MONTAGE_HOME="$BASE/montage"
+export STRIPES_HOME="$BASE/stripesjs"
+
+#Servers Your Way Variables
+export SYW_HOME="/workspace/serversYourWay"
+
+#Debt Tracker Variables
+export DT_HOME="/workspace/debttracker"
+
+#chrome
+alias chrome="nohup google-chrome ----profile-directory=\"Testing\" --user-data-dir=\"/home/steveerf/.chrome-testing\" --disable-web-security -incognito http://localhost:8500/bullhornstaffing/bhlogin.cfm"
+
+#ide
+alias webstorm="sh /ide/WebStorm-139.252/bin/webstorm.sh"
+alias idea="nohup sh /ide/idea/bin/idea.sh &>/dev/null &"
+
+#SQL
+alias squ="nohup sh /usr/local/squirrel-sql-3.6/squirrel-sql.sh &>/dev/null &"
+
+#skype
+alias sk="nohup skype &>/dev/null &"
+alias sks="nohup skype --secondary &>/dev/null &"
+
+#debt tracker
+alias dtw="cd $DT_HOME/web"
+alias dtr="cd $DT_HOME/rest"
+
+#servers your way
+alias sb="cd $SYW_HOME"
+alias sr="cd $SYW_HOME/serversyourwayrestservice"
+alias sc="cd $SYW_HOME/serversyourway"
+
+#storage
+alias storage="cd /media/steveerf/StorageLinux"
+alias winstorage="cd /media/steveerf/StorageWindows"
+
+#mikeparksdev server login
+alias login="ssh steveerf@104.131.0.229"
+alias so="ssh mparks@104.131.172.101"
+
+#task manager
+alias tm="nohup gnome-system-monitor &>/dev/null &"
+
+#bullhorn
+alias dt="nohup python /workspace/bullhorn/bh-env/devTools.pyw &>/dev/null &"
+alias base="cd $BASE"
+alias ok="cd $BASE/okemo"
+alias mo="cd $BASE/mosaic"
+alias mon="cd $BASE/montage"
+alias st="cd $BASE/stripesjs"
+alias cf="cd $BASE/CFusionMX7"
+alias cs="cd $BASE/core-services"
+
+alias cpmon="cp $MONTAGE_HOME/dist/montage.css $MONTAGE_HOME/dist/montage.js $BASE/mosaic/lib/montage/dist && cp $MONTAGE_HOME/dist/montage.css $MONTAGE_HOME/dist/montage.js $BASE/CFusionMX7/wwwroot/BullhornSTAFFING/Script/lib/montage/dist"
+
+alias cpst="cp $STRIPES_HOME/dist/stripesjs.js $BASE/mosaic/lib/stripesjs/dist/ && cp $STRIPES_HOME/dist/stripesjs.js $BASE/CFusionMX7/wwwroot/BullhornSTAFFING/Script/lib/stripesjs/dist/"
+
+#bullhorn server logins
+alias vol="ssh root@volkemo-backend"
+
+#java versions
+alias javaversion="sudo update-alternatives --config java"
+alias javacversion="sudo update-alternatives --config javac"
+
+#git aliases
+alias gts="git status"
+alias gta="git add --all"
+alias gp="git stash && git pull && git stash pop"
+
+#shortcuts
+alias c="clear"
+alias ll='ls -alF --group-directories-first'
+alias la='ls -A'
+alias l='ls -CF'
+
+#utorrent
+alias utorrent="nohup utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &>/dev/null &"
+
+#peer guardian
+alias pg="sudo nohup pglgui &>/dev/null &"

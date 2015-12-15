@@ -1,0 +1,12 @@
+echo 'executing ~/.bash_files/.bash_exports'
+
+export EDITOR=vim
+
+#Used for Ruby on Rails RVM
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+export CATALINA_HOME=/opt/tomcat
+
+if [ -f ~/.bash_files/.bullhorn_variables ]; then
+    . ~/.bash_files/.bullhorn_variables
+fi
