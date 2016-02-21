@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cat ~/.ssh/id_rsa.pub | sshpass -p '11bruins' ssh root@$1 'cat >> .ssh/authorized_keys'
+
+ssh root@$1

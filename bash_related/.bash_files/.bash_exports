@@ -1,12 +1,10 @@
-echo 'executing ~/.bash_files/.bash_exports'
+echo 'Loading ~/.bash_files/.bash_exports'
 
 export EDITOR=vim
 
-#Used for Ruby on Rails RVM
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#Put the directory where you keep your code here
+export WORKSPACE=/workspace
+
+export PATH=$PATH:~/npm/bin
 
 export CATALINA_HOME=/opt/tomcat
-
-if [ -f ~/.bash_files/.bullhorn_variables ]; then
-    . ~/.bash_files/.bullhorn_variables
-fi
