@@ -23,6 +23,9 @@ export JDK_HOME=/usr/lib/jvm/java-8-oracle
 export GRADLE_HOME=$DEV_TOOLS/gradle-1.11/bin
 export GRAILS_HOME=$DEV_TOOLS/grails-2.1.5
 
+#Helper Aliases
+alias nop="cd $BASE/novo-dev/novo && git stash && novo update && git stash pop && cd -"
+
 #Add executables to PATH
 export PATH=$PATH:$Ant_home:$GRADLE_HOME:$GRADLE_HOME/bin:/opt/SenchaSDKTools-2.0.0-beta3:$SENCHA_CMD
 
@@ -32,9 +35,12 @@ alias cs="cd $BASE/core-services/projects"
 alias mo="cd $BASE/mosaic"
 alias mon="cd $MONTAGE_HOME"
 alias st="cd $STRIPES_HOME"
+alias no="cd $BASE/novo-dev/novo"
 alias base="cd $BASE"
 
 alias cpmon="cp $MONTAGE_HOME/dist/montage.* $MOSAIC_MONTAGE_DIST && cp $MONTAGE_HOME/dist/montage.* $CF_MONTAGE_DIST"
-alias cpstr="cp $STRIPES_HOME/dist/stripesjs.* $MOSAIC_STRIPES_DIST && cp $STRIPES_HOME/dist/stripesjs.* $CF_STRIPES_DIST"
 
+# QA box logins
+alias met="ssh root@metrics"
+alias vol="ssh root@volkemo-backend"
 

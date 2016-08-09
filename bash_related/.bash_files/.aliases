@@ -3,16 +3,17 @@ echo "Loading ~/.bash_files/.aliases"
 #git aliases
 alias gts="git status"
 alias gta="git add --all"
-alias gp="git stash && git pull && git stash pop"
+alias gp="git up"
 
 #shortcuts
 alias c="clear"
-alias ll='ls -alF --group-directories-first'
+alias ll='ls -alhF --group-directories-first'
 alias la='ls -A'
 alias l='ls -CF'
 
 #Chrome no security
 alias chrome="/usr/bin/google-chrome --profile-directory=\"Profile Noodle\" --user-data-dir=\"~/.config/google-chrome/no_security_user/\" --disable-web-security -incognito"
 
-
-alias book="just"
+#Redis
+alias redis="/devTools/redis/src/redis-server"
+alias rc="/devTools/redis/src/redis-cli"
