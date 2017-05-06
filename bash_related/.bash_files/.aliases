@@ -15,5 +15,8 @@ alias l='ls -CF'
 alias chrome="/usr/bin/google-chrome --profile-directory=\"Profile Noodle\" --user-data-dir=\"~/.config/google-chrome/no_security_user/\" --disable-web-security -incognito"
 
 #Redis
-alias redis="/devTools/redis/src/redis-server"
-alias rc="/devTools/redis/src/redis-cli"
+alias redis="/opt/redis/src/redis-server"
+alias rc="/opt/redis/src/redis-cli"
+
+#IDE
+alias idea="XMODIFIERS= && nohup sh /ide/idea/bin/idea.sh &> /dev/null &"

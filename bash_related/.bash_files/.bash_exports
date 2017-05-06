@@ -4,7 +4,3 @@ export EDITOR=vim
 
 #Put the directory where you keep your code here
 export WORKSPACE=/workspace
-
-export PATH=$PATH:~/npm/bin
-
-export CATALINA_HOME=/opt/tomcat
