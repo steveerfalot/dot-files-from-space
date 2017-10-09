@@ -1,9 +1,8 @@
-echo "Loading ~/.bash_files/.aliases"
-
 #git aliases
 alias gts="git status"
 alias gta="git add --all"
 alias gp="git up"
+alias prunetags="git fetch --prune origin +refs/tags/*:refs/tags/*"
 
 #shortcuts
 alias c="clear"

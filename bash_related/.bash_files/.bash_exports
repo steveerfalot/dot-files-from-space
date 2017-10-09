@@ -1,5 +1,3 @@
-echo 'Loading ~/.bash_files/.bash_exports'
-
 export EDITOR=vim
 
 #Put the directory where you keep your code here
