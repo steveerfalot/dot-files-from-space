@@ -31,6 +31,7 @@ alias ncs="$NOVO_CLEAN_COMMAND && npm start"
 alias nc="$NOVO_CLEAN_COMMAND"
 alias nct="$NOVO_CLEAN_COMMAND && npm run test:watch"
 alias lbe="cd $NOVO_DIR/novo && rm -rvf node_modules/bh-elements && npm i ../bh-elements && npm start"
+alias ne="cd $NOVO_DIR/novo-elements"
 
 #BBO Aliases
 alias bc="$BBO_CLEAN_COMMAND"
@@ -59,4 +60,5 @@ alias cpmon="cp $MONTAGE_HOME/dist/montage.* $MOSAIC_MONTAGE_DIST && cp $MONTAGE
 # QA box logins
 alias met="ssh root@metrics"
 alias vol="ssh root@volkemo-backend"
+alias bbl="ssh root@17216.116.128"
 
