@@ -1,4 +1,0 @@
-export EDITOR=vim
-
-#Put the directory where you keep your code here
-export WORKSPACE=/workspace

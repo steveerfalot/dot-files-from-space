@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #Bullhorn Variables
 export BASE="$WORKSPACE/bh-env"
 export NOVO_DIR="$WORKSPACE/novo-dev"
@@ -22,8 +23,8 @@ export JAVA_OPTS=-Dbullhorn.sandbox=dev
 #export JAVA_HOME=/usr/lib/jvm/java-6-oracle
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export GRADLE_HOME=$DEV_TOOLS/gradle-1.11/bin
-export GRAILS_HOME=$DEV_TOOLS/grails-2.1.5
+export GRADLE_HOME=$(DEV_TOOLS)/gradle-1.11/bin
+export GRAILS_HOME=$(DEV_TOOLS)/grails-2.1.5
 # export JAVACMD=/usr/lib/jvm/java-8-openjdk-amd64/bin/java
 
 #Novo Aliases
@@ -36,14 +37,16 @@ alias ne="cd $NOVO_DIR/novo-elements"
 #BBO Aliases
 alias bc="$BBO_CLEAN_COMMAND"
 alias bcs="$BBO_CLEAN_COMMAND && npm start"
+alias bct="$BBO_CLEAN_COMMAND && npm run test:watch"
 
 #Bots Aliases
 # TODO: deploy bots-rules-engine and kafka-forwarder to local tomcat
 
 #Add executables to PATH
-export PATH=$PATH:$ANT_HOME:$GRADLE_HOME:$GRADLE_HOME/bin:/opt/SenchaSDKTools-2.0.0-beta3:$SENCHA_CMD
+export PATH=$PATH:$(ANT_HOME):$(GRADLE_HOME):$(GRADLE_HOME)/bin:/opt/SenchaSDKTools-2.0.0-beta3:$(SENCHA_CMD)
 
 #Aliases
+alias base="cd $BASE"
 alias cf="cd $BASE/CFusionMX7"
 alias cs="cd $BASE/core-services/projects"
 alias mo="cd $BASE/mosaic"
@@ -53,12 +56,11 @@ alias bre="cd $BOTS_HOME/bots-rules-engine"
 alias kf="cd $BOTS_HOME/kafka-forwarder"
 alias bb="cd $BBO_HOME/backoffice"
 alias bf="cd $BBO_HOME/backoffice-www"
-alias base="cd $BASE"
 
 alias cpmon="cp $MONTAGE_HOME/dist/montage.* $MOSAIC_MONTAGE_DIST && cp $MONTAGE_HOME/dist/montage.* $CF_MONTAGE_DIST"
 
 # QA box logins
 alias met="ssh root@metrics"
 alias vol="ssh root@volkemo-backend"
-alias bbl="ssh root@17216.116.128"
+alias bbl="ssh root@172.16.116.128"
 

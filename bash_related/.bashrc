@@ -1,8 +1,8 @@
-echo 'Loading ~/.bashrc'
-
 set -o vi
 
 shopt -s checkwinsize
+
+export EDITOR=vim
 
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
@@ -12,11 +12,13 @@ else
     PS1='\[\033[1;32m\]\h:\w\$\[\033[0m\] '
 fi
 
-xset b off
+# xset b off
 export TERM=xterm-256color
 
-if [ -f ~/.bash_files/.bash_file_list ]; then
-    . ~/.bash_files/.bash_file_list
+if [ -f ~/bash_files/ ]; then
+    for filename in $(pwd)/.*; do
+        source ~/bash_files/$(filename)
+    done
 fi
 
 case $- in
@@ -100,6 +102,3 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-
-

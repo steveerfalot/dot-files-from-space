@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+box=$1
+
+cat ~/.ssh/id_rsa.pub | ssh root@$(box) 'cat >> .ssh/authorized_keys'
+
+echo "\n Added your key to $box \n"

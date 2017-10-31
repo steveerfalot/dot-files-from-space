@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #git aliases
 alias gts="git status"
 alias gta="git add --all"
