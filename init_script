@@ -3,22 +3,15 @@
 
 ws=$1 # workspace
 
-echo "workspace: $ws"
-echo $(ls -alF)
-
 chmod -R 775 $(pwd)
-echo "chmoded everything in $(pwd)/../"
 
 if [ ! -e ~/bash_files ]; then
-  echo "~/bash_files DOES NOT EXIST"
-  ln -s $(pwd)/bash_files ~/bash_files
-else
-  echo "~/bash_files EXISTS"
+  ln -s $(pwd)/bash_related/bash_files ~/bash_files
 fi
 
-if ! grep -Fxq "export WORKSPACE=\"$ws\"" ~/bash_files/.bullhorn_variables
+if grep -Fxq "export WORKSPACE=REPLACE_ME" ~/bash_files/.bullhorn_variables
 then
-  sed -i "2s#^#export WORKSPACE=\"$ws\"\n#" ~/bash_files/.bullhorn_variables
+  sed -i "s#REPLACE_ME#\"$ws\"#" ~/bash_files/.bullhorn_variables
 fi
 
 if [ -f ~/.bashrc ]; then

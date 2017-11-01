@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export WORKSPACE="/workspace"
+export WORKSPACE=REPLACE_ME
 #Bullhorn Variables
 export BASE="$WORKSPACE/bh-env"
 export NOVO_DIR="$WORKSPACE/novo-dev"
