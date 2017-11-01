@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export WORKSPACE="/workspace"
 #Bullhorn Variables
 export BASE="$WORKSPACE/bh-env"
 export NOVO_DIR="$WORKSPACE/novo-dev"
@@ -12,19 +13,19 @@ export MOSAIC_MONTAGE_DIST="$MOSAIC_HOME/lib/montage/dist"
 
 #Command Variables
 export FRESH_NPM_INSTALL="rm -rvf node_modules && npm i"
-export NOVO_CLEAN_COMMAND="cd $NOVO_DIR/novo && $FRESH_NPM_INSTALL" 
+export NOVO_CLEAN_COMMAND="cd $NOVO_DIR/novo && $FRESH_NPM_INSTALL"
 export BBO_CLEAN_COMMAND="cd $BBO_HOME/backoffice-www && $FRESH_NPM_INSTALL"
 
 #Environment/Build Variables
-export DEV_TOOLS=/devTools
-export ANT_HOME=/usr/bin/ant
+export DEV_TOOLS="/devTools"
+export ANT_HOME="/usr/bin/ant"
 export ANT_ARGS="-noclasspath -lib $DEV_TOOLS/antlib"
-export JAVA_OPTS=-Dbullhorn.sandbox=dev
+export JAVA_OPTS="-Dbullhorn.sandbox=dev"
 #export JAVA_HOME=/usr/lib/jvm/java-6-oracle
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export JDK_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export GRADLE_HOME=$(DEV_TOOLS)/gradle-1.11/bin
-export GRAILS_HOME=$(DEV_TOOLS)/grails-2.1.5
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+export JDK_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+export GRADLE_HOME="$DEV_TOOLS/gradle-1.11/bin"
+export GRAILS_HOME="$DEV_TOOLS/grails-2.1.5"
 # export JAVACMD=/usr/lib/jvm/java-8-openjdk-amd64/bin/java
 
 #Novo Aliases
@@ -43,7 +44,7 @@ alias bct="$BBO_CLEAN_COMMAND && npm run test:watch"
 # TODO: deploy bots-rules-engine and kafka-forwarder to local tomcat
 
 #Add executables to PATH
-export PATH=$PATH:$(ANT_HOME):$(GRADLE_HOME):$(GRADLE_HOME)/bin:/opt/SenchaSDKTools-2.0.0-beta3:$(SENCHA_CMD)
+export PATH=$PATH:${ANT_HOME}:${GRADLE_HOME}:${GRADLE_HOME}/bin
 
 #Aliases
 alias base="cd $BASE"
