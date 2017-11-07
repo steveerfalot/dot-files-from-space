@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+eval home=~
+
+. ${home}/bash_files/exports/.bullhorn.exports
+
+#Novo Aliases
+alias ncs="$NOVO_CLEAN_COMMAND && npm start"
+alias nc="$NOVO_CLEAN_COMMAND"
+alias nct="$NOVO_CLEAN_COMMAND && npm run test:watch"
+alias lbe="cd $NOVO_DIR/novo && rm -rvf node_modules/bh-elements && npm i ../bh-elements && npm start"
+alias ne="cd $NOVO_DIR/novo-elements"
+
+#BBO Aliases
+alias bc="$BBO_CLEAN_COMMAND"
+alias bcs="$BBO_CLEAN_COMMAND && npm start"
+alias bct="$BBO_CLEAN_COMMAND && npm run test:watch"
+
+#Bots Aliases
+# TODO: deploy bots-rules-engine and kafka-forwarder to local tomcat
+
+#Aliases
+alias base="cd $BASE"
+alias cf="cd $BASE/CFusionMX7"
+alias cs="cd $BASE/core-services/projects"
+alias mo="cd $BASE/mosaic"
+alias mon="cd $MONTAGE_HOME"
+alias no="cd $WORKSPACE/novo-dev/novo"
+alias bre="cd $BOTS_HOME/bots-rules-engine"
+alias kf="cd $BOTS_HOME/kafka-forwarder"
+alias bb="cd $BBO_HOME/backoffice"
+alias bf="cd $BBO_HOME/backoffice-www"
+
+alias cpmon="cp $MONTAGE_HOME/dist/montage.* $MOSAIC_MONTAGE_DIST && cp $MONTAGE_HOME/dist/montage.* $CF_MONTAGE_DIST"
+
+# QA box logins
+alias met="ssh root@metrics"
+alias vol="ssh root@volkemo-backend"
+alias bbl="ssh root@$BBO_IP"
+

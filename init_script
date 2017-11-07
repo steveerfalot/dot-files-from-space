@@ -1,23 +1,42 @@
 #!/usr/bin/env bash
 # arg1 path/to/workspace
 
-ws=$1 # workspace
-
-chmod -R 775 $(pwd)
-
-if [ ! -e ~/bash_files ]; then
-  ln -s $(pwd)/bash_related/bash_files ~/bash_files
-fi
-
-if grep -Fxq "export WORKSPACE=REPLACE_ME" ~/bash_files/.bullhorn_variables
+if [ ! -z "$1" ]
 then
-  sed -i "s#REPLACE_ME#\"$ws\"#" ~/bash_files/.bullhorn_variables
+  ws=$1 # workspace
+else
+  echo "Must pass in the path/to/your/workspace as the first argument i.e."
+  echo "./init_script /workspace"
+  exit
 fi
 
-if [ -f ~/.bashrc ]; then
-    mv ~/.bashrc ~/.bashrc.backup
+SCRIPT_DIR=$(readlink -f init_script | sed "s@/init_script@@g")
+BASH_DIR=${ws}/bash_related
+DOT_FILES_DIR=~/bash_files
+EXPORTS=~/bash_files/exports/.bullhorn.exports
+BASHRC=~/.bashrc
+
+chmod -R 775 ${SCRIPT_DIR}
+
+if [ ! -e ${DOT_FILES_DIR} ]; then
+  ln -s ${SCRIPT_DIR}/bash_related/bash_files ${DOT_FILES_DIR}
 fi
 
-cp $(pwd)/bash_related/.bashrc ~/.bashrc
+if grep -Fxq "export WORKSPACE=REPLACE_ME" ${EXPORTS}
+then
+  sed -i "s#REPLACE_ME#\"$ws\"#" ${EXPORTS}
+elif grep -Fxq "export WORKSPACE=\"\"" ${EXPORTS}
+then
+  sed -i "s#\"\"#\"$ws\"#" ${EXPORTS}
+fi
 
-. ~/.bashrc
+if [ -f ${BASHRC} ]; then
+    mv ${BASHRC} ${BASHRC}.backup$(date +"%Y%m%d_%H%M%S")
+fi
+
+cp ${SCRIPT_DIR}/bash_related/.bashrc ${BASHRC}
+
+. ${BASHRC}
+echo $(. ${BASHRC})
+echo "Finished: Now run:"
+echo ". $BASHRC"

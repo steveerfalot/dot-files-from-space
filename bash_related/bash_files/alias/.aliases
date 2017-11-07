@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+
+echo "This is my current working directory: ----> $(pwd)" \n
+
+eval home=~
+
+. ${home}/bash_files/exports/.bullhorn.exports
+
 #git aliases
 alias gts="git status"
 alias gta="git add --all"
@@ -13,6 +20,8 @@ alias l='ls -CF'
 
 #Chrome no security
 alias chrome="/usr/bin/google-chrome --profile-directory=\"Profile Noodle\" --user-data-dir=\"~/.config/google-chrome/no_security_user/\" --disable-web-security -incognito"
+
+alias mc="cd $WORKSPACE/machine_config"
 
 #Redis
 alias redis="/opt/redis/src/redis-server"

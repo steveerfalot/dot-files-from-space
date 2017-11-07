@@ -2,7 +2,8 @@ set -o vi
 
 shopt -s checkwinsize
 
-export EDITOR=vim
+# Expand the tilde to get full paths
+eval home=~
 
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
@@ -15,9 +16,19 @@ fi
 # xset b off
 export TERM=xterm-256color
 
-if [ -e ~/bash_files/ ]; then
-  for filename in ~/bash_files/.*; do
+
+dot_files=$(find ${home}/bash_files/alias/ -type f -name '*.*')
+
+for filename in ${dot_files}; do
+  . ${filename}
+done
+
+if [ -e ${home}/bash_files/ ];
+then
+  echo "$home/bash_files/"
+  for filename in ${home}/bash_files/**/*.aliases; do
     if [ -f ${filename} ]; then
+      echo "filename in .aliases loop: $filename"
       . ${filename}
     fi
   done
@@ -78,7 +89,7 @@ xterm*|rxvt*)
 esac
 
 if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  test -r ${home}/.dircolors && eval "$(dircolors -b ${home}/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
   #alias dir='dir --color=auto'
   #alias vdir='vdir --color=auto'
@@ -99,3 +110,7 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# For nvm in case you had it installed already
+export NVM_DIR="$home/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
