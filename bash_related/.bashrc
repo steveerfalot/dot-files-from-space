@@ -23,17 +23,6 @@ for filename in ${dot_files}; do
   . ${filename}
 done
 
-if [ -e ${home}/bash_files/ ];
-then
-  echo "$home/bash_files/"
-  for filename in ${home}/bash_files/**/*.aliases; do
-    if [ -f ${filename} ]; then
-      echo "filename in .aliases loop: $filename"
-      . ${filename}
-    fi
-  done
-fi
-
 case $- in
   *i*) ;;
     *) return;;

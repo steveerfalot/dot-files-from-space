@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-echo "This is my current working directory: ----> $(pwd)" \n
-
-eval home=~
-
-. ${home}/bash_files/exports/.bullhorn.exports
+. ${HOME}/bash_files/exports/.bullhorn.exports
 
 #git aliases
 alias gts="git status"

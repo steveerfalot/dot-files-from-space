@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-eval home=~
-
-. ${home}/bash_files/exports/.bullhorn.exports
+. ${HOME}/bash_files/exports/.bullhorn.exports
 
 #Novo Aliases
 alias ncs="$NOVO_CLEAN_COMMAND && npm start"
@@ -36,5 +34,5 @@ alias cpmon="cp $MONTAGE_HOME/dist/montage.* $MOSAIC_MONTAGE_DIST && cp $MONTAGE
 # QA box logins
 alias met="ssh root@metrics"
 alias vol="ssh root@volkemo-backend"
-alias bbl="ssh root@$BBO_IP"
+alias bbe="ssh root@$BBO_IP"
 
