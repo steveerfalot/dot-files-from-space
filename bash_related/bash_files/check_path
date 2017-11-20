@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+export GRADLE_HOME="/opt/gradle/gradle-4.3.1"
+
+PATH_EXTRAS=(":$GRADLE_HOME/bin" ":$HOME/.rvm/bin")
+PATH_OLD=${PATH}
+PATH_NEW=${PATH}
+
+for i in "${PATH_EXTRAS[@]}"; do
+  i=$(echo ${i} | sed "s#\/#\\\/#g")
+  PATH_NEW=$(echo ${PATH_NEW} | sed "s#$i##g")
+done
+
+export PATH="$PATH:$HOME/.rvm/bin:${GRADLE_HOME}/bin"

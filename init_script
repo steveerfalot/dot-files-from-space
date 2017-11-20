@@ -12,9 +12,9 @@ fi
 
 SCRIPT_DIR=$(readlink -f init_script | sed "s@/init_script@@g")
 BASH_DIR=${ws}/bash_related
-DOT_FILES_DIR=~/bash_files
-EXPORTS=~/bash_files/exports/.bullhorn.exports
-BASHRC=~/.bashrc
+DOT_FILES_DIR=${HOME}/bash_files
+EXPORTS=~${HOME}/bash_files/exports/.bullhorn.exports
+BASHRC=${HOME}/.bashrc
 
 chmod -R 775 ${SCRIPT_DIR}
 

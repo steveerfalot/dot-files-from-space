@@ -28,9 +28,12 @@ export JAVA_OPTS="-Dbullhorn.sandbox=dev"
 #export JAVA_HOME=/usr/lib/jvm/java-6-oracle
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export JDK_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-export GRADLE_HOME="$DEV_TOOLS/gradle-1.11/bin"
-export GRAILS_HOME="$DEV_TOOLS/grails-2.1.5"
+#export GRADLE_HOME="$DEV_TOOLS/gradle-1.11/bin"
+#export GRAILS_HOME="$DEV_TOOLS/grails-2.1.5"
 # export JAVACMD=/usr/lib/jvm/java-8-openjdk-amd64/bin/java
-
+echo "This is your PATH before: \n"
+echo ${PATH}
 #Add executables to PATH
-export PATH=$PATH:${ANT_HOME}:${GRADLE_HOME}:${GRADLE_HOME}/bin
+#export PATH=$PATH:${ANT_HOME}:${GRADLE_HOME}:${GRADLE_HOME}/bin
+echo "This is your PATH after: "\n
+echo ${PATH}

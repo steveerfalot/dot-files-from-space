@@ -98,7 +98,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+. ${HOME}/bash_files/check_path
 
 # For nvm in case you had it installed already
 export NVM_DIR="$home/.nvm"
