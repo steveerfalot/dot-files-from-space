@@ -1,9 +1,10 @@
-echo "Loading ~/.bash_files/.aliases"
+#!/usr/bin/env bash
 
 #git aliases
 alias gts="git status"
 alias gta="git add --all"
 alias gp="git up"
+alias prunetags="git fetch --prune origin +refs/tags/*:refs/tags/*"
 
 #shortcuts
 alias c="clear"
@@ -14,6 +15,11 @@ alias l='ls -CF'
 #Chrome no security
 alias chrome="/usr/bin/google-chrome --profile-directory=\"Profile Noodle\" --user-data-dir=\"~/.config/google-chrome/no_security_user/\" --disable-web-security -incognito"
 
+alias ldf="cd $WORKSPACE/dot-files-from-space"
+
 #Redis
-alias redis="/devTools/redis/src/redis-server"
-alias rc="/devTools/redis/src/redis-cli"
+alias redis="/opt/redis/src/redis-server"
+alias rc="/opt/redis/src/redis-cli"
+
+#IDE
+alias idea="XMODIFIERS= && nohup sh /ide/idea/bin/idea.sh &> /dev/null &"

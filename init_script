@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# arg1 path/to/workspace
+
+if [ ! -z "$1" ]
+then
+  ws=$1 # workspace
+else
+  echo "Must pass in the path/to/your/workspace as the first argument i.e."
+  echo "./init_script /workspace"
+  exit
+fi
+
+SCRIPT_DIR=$(readlink -f init_script | sed "s@/init_script@@g")
+BASH_DIR=${ws}/environment
+DOT_FILES_DIR=${HOME}/env_files
+EXPORTS=~${HOME}/env_files/exports/.bullhorn.exports
+BASHRC=${HOME}/.bashrc
+
+chmod -R 775 ${SCRIPT_DIR}
+
+if [ ! -e ${DOT_FILES_DIR} ]; then
+  ln -s ${SCRIPT_DIR}/environment/env_files ${DOT_FILES_DIR}
+fi
+
+# TODO: handle symlinks for usr/local/bin && config
+
+if grep -Fxq "export WORKSPACE=REPLACE_ME" ${EXPORTS}
+then
+  sed -i "s#REPLACE_ME#\"$ws\"#" ${EXPORTS}
+elif grep -Fxq "export WORKSPACE=\"\"" ${EXPORTS}
+then
+  sed -i "s#\"\"#\"$ws\"#" ${EXPORTS}
+fi
+
+if [ -f ${BASHRC} ]; then
+    mv ${BASHRC} ${BASHRC}.backup$(date +"%Y%m%d_%H%M%S")
+fi
+
+cp ${SCRIPT_DIR}/environment/.bashrc ${BASHRC}
+
+. ${BASHRC}
+echo $(. ${BASHRC})
+echo "Finished: Now run:"
+echo ". $BASHRC"
