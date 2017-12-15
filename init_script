@@ -11,16 +11,18 @@ else
 fi
 
 SCRIPT_DIR=$(readlink -f init_script | sed "s@/init_script@@g")
-BASH_DIR=${ws}/bash_related
-DOT_FILES_DIR=${HOME}/bash_files
-EXPORTS=~${HOME}/bash_files/exports/.bullhorn.exports
+BASH_DIR=${ws}/environment
+DOT_FILES_DIR=${HOME}/env_files
+EXPORTS=~${HOME}/env_files/exports/.bullhorn.exports
 BASHRC=${HOME}/.bashrc
 
 chmod -R 775 ${SCRIPT_DIR}
 
 if [ ! -e ${DOT_FILES_DIR} ]; then
-  ln -s ${SCRIPT_DIR}/bash_related/bash_files ${DOT_FILES_DIR}
+  ln -s ${SCRIPT_DIR}/environment/env_files ${DOT_FILES_DIR}
 fi
+
+# TODO: handle symlinks for usr/local/bin && config
 
 if grep -Fxq "export WORKSPACE=REPLACE_ME" ${EXPORTS}
 then
@@ -34,7 +36,7 @@ if [ -f ${BASHRC} ]; then
     mv ${BASHRC} ${BASHRC}.backup$(date +"%Y%m%d_%H%M%S")
 fi
 
-cp ${SCRIPT_DIR}/bash_related/.bashrc ${BASHRC}
+cp ${SCRIPT_DIR}/environment/.bashrc ${BASHRC}
 
 . ${BASHRC}
 echo $(. ${BASHRC})

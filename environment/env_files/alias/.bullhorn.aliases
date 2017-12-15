@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. ${HOME}/bash_files/exports/.bullhorn.exports
+. ${HOME}/env_files/exports/.bullhorn.exports
 
 #Novo Aliases
 alias ncs="$NOVO_CLEAN_COMMAND && npm start"

@@ -17,7 +17,7 @@ fi
 export TERM=xterm-256color
 
 
-dot_files=$(find ${home}/bash_files/alias/ -type f -name '*.*')
+dot_files=$(find ${home}/env_files/alias/ -type f -name '*.*')
 
 for filename in ${dot_files}; do
   . ${filename}
@@ -98,7 +98,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. ${HOME}/bash_files/check_path
+. ${HOME}/env_files/check_path
 
 # For nvm in case you had it installed already
 export NVM_DIR="$home/.nvm"
