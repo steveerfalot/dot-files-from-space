@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-. ${HOME}/bash_files/exports/.bullhorn.exports
-
 #git aliases
 alias gts="git status"
 alias gta="git add --all"

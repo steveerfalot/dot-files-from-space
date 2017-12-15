@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "****************************** $(readlink -f check_path) *********************************"
+
 export GRADLE_HOME="/opt/gradle/gradle-4.3.1"
 
 PATH_EXTRAS=(":$GRADLE_HOME/bin" ":$HOME/.rvm/bin")
