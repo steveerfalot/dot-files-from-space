@@ -12,6 +12,9 @@ alias ll='ls -alhF --group-directories-first'
 alias la='ls -A'
 alias l='ls -CF'
 
+#rebash
+alias reb="source ~/.bashrc"
+
 #Chrome no security
 alias chrome="/usr/bin/google-chrome --profile-directory=\"Profile Noodle\" --user-data-dir=\"~/.config/google-chrome/no_security_user/\" --disable-web-security -incognito"
 

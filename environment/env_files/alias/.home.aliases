@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 #SQL
 alias squ="nohup sh /opt/squirrel-sql/squirrel-sql.sh &> /dev/null &"
-
-#rebash
-alias reb=". ~/.bashrc"
