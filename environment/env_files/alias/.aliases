@@ -15,7 +15,7 @@ alias l='ls -CF'
 #Chrome no security
 alias chrome="/usr/bin/google-chrome --profile-directory=\"Profile Noodle\" --user-data-dir=\"~/.config/google-chrome/no_security_user/\" --disable-web-security -incognito"
 
-alias ldf="cd $WORKSPACE/dot-files-from-space"
+alias dffs="cd $WORKSPACE/dot-files-from-space"
 
 #Redis
 alias redis="/opt/redis/src/redis-server"

@@ -10,7 +10,7 @@ export MONTAGE_HOME="$BASE/montage"
 export MOSAIC_HOME="$BASE/mosaic"
 export BOTS_HOME="$WORKSPACE/bots"
 export BBO_HOME="$WORKSPACE/bbo"
-export BBO_IP="172.16.116.128"
+export BBO_IP="172.16.14.128"
 
 export CF_MONTAGE_DIST="$BASE/CFusionMX7/wwwroot/BullhornSTAFFING/Script/lib/montage/dist"
 export MOSAIC_MONTAGE_DIST="$MOSAIC_HOME/lib/montage/dist"
