@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Set your ssh key in bhsource before running this!!!!!!
 # Must set up your vpn connection as well if you are not in the office
 
