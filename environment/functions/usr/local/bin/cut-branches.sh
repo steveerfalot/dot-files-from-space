@@ -1,20 +1,19 @@
 #!/usr/bin/env bash
 # arg1 (REQUIRED) string - release ticket number
+REL=$1
 # arg2 (REQUIRED) string - version of software
+VERSION=$2
 # arg3 (optional) boolean - if passed in not push any changes
+dryrun=$3
 # arg4 (optional) boolean - if passed in will rebase the current branch from development
+rebase=$4
 
-if [ -z $1 ] || [ -z $2 ];
+if [ -z ${REL} ] || [ -z ${VERSION} ];
 then
   echo "Must pass in the REL ticket number and the version of the software"
-  echo "./cut-branches.sh REL-1234 2018.01.0"
+  echo "./cut-branches REL-1234 2018.01.0"
   exit 1
 fi
-
-REL=$1
-VERSION=$2
-dryrun=$3
-rebase=$4
 
 BASE_DIR=/workspace/bh-env
 

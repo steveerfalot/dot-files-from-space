@@ -6,7 +6,7 @@ then
   ws=$1 # workspace
 else
   echo "Must pass in the path/to/your/workspace as the first argument i.e."
-  echo "./init_script /workspace"
+  echo "./init_script '/workspace'"
   exit 1
 fi
 

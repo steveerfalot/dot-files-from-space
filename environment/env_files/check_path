@@ -3,14 +3,19 @@
 echo "****************************** $(readlink -f check_path) *********************************"
 
 export GRADLE_HOME="/opt/gradle/gradle-4.3.1"
+export FLEX_SDK_HOME="$WORKSPACE/tools/bh-build-tools/flex-sdk4.6"
 
-PATH_EXTRAS=(":$GRADLE_HOME/bin" ":$HOME/.rvm/bin")
+PATH_EXTRAS=(":$GRADLE_HOME/bin" ":$HOME/.rvm/bin" ":$FLEX_SDK_HOME/bin")
 PATH_OLD=${PATH}
-PATH_NEW=${PATH}
 
-for i in "${PATH_EXTRAS[@]}"; do
-  i=$(echo ${i} | sed "s#\/#\\\/#g")
-  PATH_NEW=$(echo ${PATH_NEW} | sed "s#$i##g")
+for i in "${PATH_EXTRAS[@]}"
+do
+  if [[ ! ${PATH} =~ *"$i"* ]]
+  then
+    PATH="${PATH}$i"
+  fi
 done
 
-export PATH="$PATH:$HOME/.rvm/bin:${GRADLE_HOME}/bin"
+export PATH="$PATH"
+
+echo "PATH: $PATH"

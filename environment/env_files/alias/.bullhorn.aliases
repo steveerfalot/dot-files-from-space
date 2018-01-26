@@ -35,4 +35,6 @@ alias cpmon="cp $MONTAGE_HOME/dist/montage.* $MOSAIC_MONTAGE_DIST && cp $MONTAGE
 alias met="ssh root@metrics"
 alias vol="ssh root@volkemo-backend"
 alias bbe="ssh root@$BBO_IP"
+alias bboqa="ssh root@bbowebqa1"
+alias bbohf="ssh root@bbowebqa2"
 
