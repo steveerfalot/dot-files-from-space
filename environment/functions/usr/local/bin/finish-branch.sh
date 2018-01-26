@@ -1,12 +1,19 @@
 #!/usr/bin/env bash
 
-function update_npm_dependencies() {
-  local VERSION=$1
+REL=""
+VERSION=""
+REL_BRANCH=""
+NPM_REPOS=(bullhornui bullhornjs montage novo-canvas-ui mosaic coldfusion)
 
-  local npm_repos=(bullhornui bullhornjs bullhornCSS montage novo-canvas-ui mosaic coldfusion)
+function gmerge() {
+  git merge --no-ff ${REL_BRANCH} --no-edit
+}
+
+function update_npm_dependencies() {
+  local version=$1
   local affected_repos=(montage mosaic coldfusion)
 
-  json -I -f package.json -e "this.version=\"$VERSION\""
+  json -I -f package.json -e "this.version=\"$version\""
   json -f package.json -a -g dependencies | json -a -k | while read repo; do
     if [[ " ${affected_repos[@]} " =~ " $repo " ]]
     then
@@ -17,33 +24,47 @@ function update_npm_dependencies() {
 
   git add package.json
   git commit -m"NOJIRA: update npm versions"
+}
+
+function make_latest() {
+  json -f package.json -a -g dependencies | json -a -k | while read repo; do
+    if [[ " ${NPM_REPOS[@]} " =~ " $repo " ]]
+    then
+      echo "*********************** making $repo latest *************************"
+      json -I -f package.json -e "this.dependencies.$repo=\"latest\""
+    fi
+  done
+
+  git add package.json
+  git commit -m"NOJIRA: make dependencies latest"
   git push
 }
 
 function f() {
-  local rel=$1
-  local version=$2
-  local rel_branch="release/$rel"
+  REL=$1
+  VERSION=$2
+  REL_BRANCH="release/$REL"
 
   prunetags
   git checkout master
   git checkout development
   gp
-  git checkout -b ${rel_branch}
+  git checkout -b ${REL_BRANCH}
 
-  update_npm_dependencies ${version}
+  update_npm_dependencies ${VERSION}
 
   git checkout master
-  git merge --no-ff ${rel_branch} --no-edit
-  git tag ${rel_branch}
-  git tag ${version}
+  gmerge
+  git tag ${REL}
+  git tag ${VERSION}
   git push
   git push --tags
   # backmerge to dev
   git checkout development
-  git merge --no-ff ${rel_branch} --no-edit
+  gmerge
+  make_latest
   git push
-  git branch -d ${rel_branch}
+  git branch -d ${REL_BRANCH}
 }
 
 #f REL-5070 201802.0.0
