@@ -1,23 +1,14 @@
 set -o vi
 
 shopt -s checkwinsize
+shopt -s globstar
 
-# Expand the tilde to get full paths
-eval home=~
+PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\t \[$(tput setaf 2)\]\u@\h \w\[$(tput sgr0)\]\[$(tput setaf 6)\]\[$(tput bold)\] \$ \[$(tput sgr0)\]"
 
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+xset b off
+export TERM=linux
 
-if [ `id -un` = root ]; then
-  PS1='\[\033[1;31m\]\h:\w\$\[\033[0m\] '
-else
-  PS1='\[\033[1;32m\]\h:\w\$\[\033[0m\] '
-fi
-
-# xset b off
-export TERM=xterm-256color
-
-
-dot_files=$(find ${home}/env_files/alias/ -type f -name '*.*')
+dot_files=$(find ${HOME}/env_files/alias/ -type f -name '*.*')
 
 for filename in ${dot_files}; do
   . ${filename}
@@ -35,8 +26,6 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-shopt -s globstar
-
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -44,6 +33,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
+## why is "want" in double quotes? -Parks 01- 
 case "$TERM" in
   xterm-color) color_prompt=yes;;
 esac
@@ -60,22 +50,6 @@ if [ -n "$force_color_prompt" ]; then
     color_prompt=
   fi
 fi
-
-if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-  ;;
-*)
-  ;;
-esac
 
 if [ -x /usr/bin/dircolors ]; then
   test -r ${home}/.dircolors && eval "$(dircolors -b ${home}/.dircolors)" || eval "$(dircolors -b)"
@@ -98,8 +72,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. ${HOME}/env_files/check_path
+export PHP_PEAR_BIN_DIR="/etc/php"
 
 # For nvm in case you had it installed already
-export NVM_DIR="$home/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
