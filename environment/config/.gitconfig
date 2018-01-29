@@ -1,0 +1,26 @@
+[user]
+  name = "Mike Parks"
+	email = mparks@bullhorn.com
+[branch]
+	autorebase = always
+[push]
+  default = current
+[color]
+  ui = auto
+[color "branch"]
+  current = white green bold
+  local = normal
+  remote = red bold 
+[color "diff"]
+  meta = yellow bold
+  frag = normal 
+  old = red bold
+  new = cyan bold
+  commit = magenta bold
+  whitespace = white reverse
+[color "status"]
+  added = green bold 
+  changed = cyan bold
+  untracked = red bold
+[core]
+	editor = vim
