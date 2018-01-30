@@ -1,36 +1,60 @@
 #!/usr/bin/env bash
 
+function exi() {
+  unset -e
+  exit "$@"
+}
+
 # arg 1 : REQUIRED : name of the server, or ip address of the server
 # arg 2 : REQUIRED : password of the root user on the server from arg 1
 # arg 3 : optional : file name of the ssh key you wish to use in ~/.ssh/
+function key-to-remote() {
+  set -e
+  local BOX=$1
+  local PW=$2
+  local KEY_NAME=$3
+  local can_continue=1
 
-BOX=$1
-PW=$2
-KEY_NAME=$3
+  if [ -z "$KEY_NAME" ];
+  then
+    KEY_NAME="id_rsa.pub"
+  fi
 
-if [ -z "$KEY_NAME" ];
-then
-  KEY_NAME="id_rsa.pub"
-fi
+  if [ -z "$BOX" ] || [ -z "$PW" ]
+  then
+    echo "Must pass argument for the QA box you wish to add your ssh key to, and the password for the root user"
+    echo "USAGE: key-to-remote {my-server-name-or-ip} {password-of-root-user} <name-of-ssh-key>"
+    exi 1
+  fi
 
-if [ -z "$BOX" ] || [ -z "$PW" ];
-then
-  echo "Must pass argument for the QA box you wish to add your ssh key to, and the password for the root user"
-  echo "USAGE: key-to-remote {my-server-name-or-ip} {password-of-root-user} <name-of-ssh-key>"
-  exit
-elif [ -z $(command -v sshpass) ];
-then
-  echo "You must have sshpass installed. You can solve this by running:"
-  echo "sudo apt install sshpass"
-  exit
-elif [ ! -f ${HOME}/.ssh/${KEY_NAME} ];
-then
-  echo "You must have an ssh key in your $HOME/.ssh/ directory named $KEY_NAME"
-  exit
-fi
+  if [ -z $(command -v sshpass) ]
+  then
+    echo "You must have sshpass installed. You can solve this by running:"
+    echo "sudo apt install sshpass"
+    shopt -s nocasematch
+    read -n 1 -p "Would you like to do this now? (y/n) \n" installSshPass
+    if [[ ${installSshPass} == "y" ]]
+    then
+      sudo apt install sshpass -y
+    else
+      can_continue=0
+    fi
+    shopt -u nocasematch
+  fi
 
-cat ~/.ssh/id_rsa.pub | sshpass -p "$PW" ssh root@${BOX} 'cat >> .ssh/authorized_keys'
+  if [ ! -f ${HOME}/.ssh/${KEY_NAME} ]
+  then
+    echo "You must have an ssh key in your $HOME/.ssh/ directory named $KEY_NAME"
+    exi 1
+  fi
 
-echo "****************************************"
-echo "*  Added your key to $BOX      *"
-echo "****************************************"
+  if [ ${can_continue} == 1 ]
+  then
+    cat ~/.ssh/id_rsa.pub | sshpass -p "$PW" ssh root@${BOX} 'cat >> .ssh/authorized_keys' || exi 1
+    echo "****************************************"
+    echo "*****  Added your key to $BOX      *****"
+    echo "****************************************"
+  else
+    exi 1
+  fi
+}

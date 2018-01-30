@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+function f() {
+  local dir_to_search=${1}
+  local opts=
+  find ${dir_to_search} ${@:2} ! -readable -prune
+}
