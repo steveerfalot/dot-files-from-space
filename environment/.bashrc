@@ -33,7 +33,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-## why is "want" in double quotes? -Parks 01- 
+## why is "want" in double quotes? -Parks 01-
 case "$TERM" in
   xterm-color) color_prompt=yes;;
 esac
@@ -52,7 +52,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ -x /usr/bin/dircolors ]; then
-  test -r ${home}/.dircolors && eval "$(dircolors -b ${home}/.dircolors)" || eval "$(dircolors -b)"
+  test -r ${HOME}/.dircolors && eval "$(dircolors -b ${HOME}/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
   #alias dir='dir --color=auto'
   #alias vdir='vdir --color=auto'
@@ -70,6 +70,15 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+if [ -e  ~/env_files/functions/bash ]
+then
+  files=~/env_files/functions/bash/*
+  for fl in ${files}
+  do
+    source "$fl"
+  done
 fi
 
 export PHP_PEAR_BIN_DIR="/etc/php"

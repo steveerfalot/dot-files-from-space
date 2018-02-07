@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #git aliases
-alias gts="git status"
+#alias gts="touch ~/gstats && git status >> ~/gstats && echo '**************************************' >> ~/gstats && git branch >> ~/gstats && cat ~/gstats && rm -f ~/gstats"
 alias gta="git add --all"
 alias gp="git up"
 alias prunetags="git fetch --prune origin +refs/tags/*:refs/tags/*"

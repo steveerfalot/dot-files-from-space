@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+function gts() {
+  local nobranch=${1}
+
+  local lightgreen='\033[1;32m'
+  local nc='\033[0m'
+
+  if [ ${nobranch} -e  'y' ]
+  then
+    git status
+  else
+    echo -e "\n"
+    git status
+    echo -e "\n ${lightgreen}****************************************************************${nc} \n"
+    git branch
+    echo -e "\n"
+  fi
+}
