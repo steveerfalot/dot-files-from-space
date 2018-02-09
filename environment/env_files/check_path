@@ -4,8 +4,9 @@ echo "****************************** $(readlink -f check_path) *****************
 
 export GRADLE_HOME="/opt/gradle/gradle-4.3.1"
 export FLEX_SDK_HOME="$WORKSPACE/tools/bh-build-tools/flex-sdk4.6"
+export POSTMAN_HOME="/opt/Postman"
 
-PATH_EXTRAS=(":$GRADLE_HOME/bin" ":$HOME/.rvm/bin" ":$FLEX_SDK_HOME/bin")
+PATH_EXTRAS=(":$GRADLE_HOME/bin" ":$HOME/.rvm/bin" ":$FLEX_SDK_HOME/bin" "$POSTMAN_HOME")
 PATH_OLD=${PATH}
 
 for i in "${PATH_EXTRAS[@]}"
