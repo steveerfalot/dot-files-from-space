@@ -14,7 +14,6 @@ function git_color() {
   local git_stats="$(git status 2> /dev/null)"
   local out="$BOLD_COLOR"
 
-
   if [[ ${git_stats} =~ "Your branch is ahead of" ]]
   then
     out+="$COLOR_CYAN Ahead"
@@ -24,12 +23,9 @@ function git_color() {
   elif [[ ${git_stats} =~ "Changes to be committed" ]]
   then
     out+="$COLOR_GREEN Staged Changes"
-  elif [[ ${git_stats} =~ "Your branch is up-to-date" ]]
+  elif [[ ${git_stats} =~ "nothing to commit" ]]
   then
     out+="$COLOR_GREEN Clean"
-  elif [[ $(git status 2> /dev/null) =~ "nothing to commit" ]]
-  then
-    out+="$COLOR_GREEN No Commit"
   else
     out+="$COLOR_RED Not a repo"
   fi

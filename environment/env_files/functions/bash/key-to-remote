@@ -45,16 +45,17 @@ function key-to-remote() {
   if [ ! -f ${HOME}/.ssh/${KEY_NAME} ]
   then
     echo "You must have an ssh key in your $HOME/.ssh/ directory named $KEY_NAME"
-    exi 1
+    exi 2
   fi
 
   if [ ${can_continue} == 1 ]
   then
-    cat ~/.ssh/id_rsa.pub | sshpass -p "$PW" ssh root@${BOX} 'cat >> .ssh/authorized_keys' || exi 1
+    cat ~/.ssh/id_rsa.pub | sshpass -p "$PW" ssh root@${BOX} 'cat >> .ssh/authorized_keys' || exi 2 ${@}
     echo "****************************************"
     echo "*****  Added your key to $BOX      *****"
     echo "****************************************"
   else
-    exi 1
+    echo "Something didn't work. Figure it out."
+    exi 2
   fi
 }
