@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-BOLD_COLOR="$(tput bold)"
-COLOR_RED="$(tput setaf 1)"
-COLOR_GREEN="$(tput setaf 2)"
-COLOR_YELLOW="$(tput setaf 3)"
-COLOR_BLUE="$(tput setaf 4)"
-COLOR_MAGENTA="$(tput setaf 5)"
-COLOR_CYAN="$(tput setaf 6)"
-COLOR_WHITE="$(tput setaf 7)"
-COLOR_RESET="$(tput sgr0)"
+BOLD_COLOR="\[$(tput bold)\]"
+COLOR_RED="\[$(tput setaf 1)\]"
+COLOR_GREEN="\[$(tput setaf 2)\]"
+COLOR_YELLOW="\[$(tput setaf 3)\]"
+COLOR_BLUE="\[$(tput setaf 4)\]"
+COLOR_MAGENTA="\[$(tput setaf 5)\]"
+COLOR_CYAN="\[$(tput setaf 6)\]"
+COLOR_WHITE="\[$(tput setaf 7)\]"
+COLOR_RESET="\[$(tput sgr0)\]"
 
 function git_color() {
   local git_stats="$(git status 2> /dev/null)"
@@ -16,18 +16,18 @@ function git_color() {
 
   if [[ ${git_stats} =~ "Your branch is ahead of" ]]
   then
-    out+="$COLOR_CYAN Ahead"
+    out+="${COLOR_CYAN}Ahead"
   elif [[ ${git_stats} =~ "Changes not staged" ]]
   then
-    out+="$COLOR_RED Unstaged Changes"
+    out+="${COLOR_RED}Unstaged Changes"
   elif [[ ${git_stats} =~ "Changes to be committed" ]]
   then
-    out+="$COLOR_GREEN Staged Changes"
+    out+="${COLOR_GREEN}Staged Changes"
   elif [[ ${git_stats} =~ "nothing to commit" ]]
   then
-    out+="$COLOR_GREEN Clean"
+    out+="${COLOR_GREEN}Clean"
   else
-    out+="$COLOR_RED Not a repo"
+    out+="${COLOR_RED}Not a repo"
   fi
 
   out+="$COLOR_RESET"
