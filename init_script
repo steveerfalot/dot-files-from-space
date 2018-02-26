@@ -7,39 +7,42 @@ then
 else
   echo "Must pass in the path/to/your/workspace as the first argument i.e."
   echo "./init_script '/workspace'"
-  exit 1
+  exit 2
 fi
 
 SCRIPT_DIR=$(readlink -f init_script | sed "s@/init_script@@g")
-BASH_DIR=${ws}/environment
-DOT_FILES_DIR=${HOME}/env_files
-EXPORTS=~${HOME}/env_files/exports/.bullhorn.exports
-BASHRC=${HOME}/.bashrc
+BASH_DIR="$ws/dot-files-from-space/environment"
+DOT_FILES_DIR="$HOME/env_files"
+EXPORTS=("$HOME/env_files/exports/")
+BASHRC="$HOME/.bashrc"
 
-chmod -R 775 ${SCRIPT_DIR}
+chmod -R 775 ${BASH_DIR}/env_files/functions/
 
 # Check if env_files dir exists, create symlink if it does not
-if [ ! -e ${DOT_FILES_DIR} ]; then
+if [ ! -e ${DOT_FILES_DIR} ]
+then
   ln -s ${SCRIPT_DIR}/environment/env_files ${DOT_FILES_DIR}
 fi
 
 # TODO: handle symlinks for usr/local/bin && config
 
-if grep -Fxq "export WORKSPACE=REPLACE_ME" ${EXPORTS}
-then
-  sed -i "s#REPLACE_ME#\"$ws\"#" ${EXPORTS}
-elif grep -Fxq "export WORKSPACE=\"\"" ${EXPORTS}
-then
-  sed -i "s#\"\"#\"$ws\"#" ${EXPORTS}
-fi
+for export in ${EXPORTS[@]}
+do
+  if grep -Fxq "export WORKSPACE=REPLACE_ME" ${export}
+  then
+    sed -i "s#REPLACE_ME#\"$ws\"#" ${export}
+  elif grep -Fxq "export WORKSPACE=\"\"" ${export}
+  then
+    sed -i "s#\"\"#\"$ws\"#" ${export}
+  fi
+done
 
-if [ -f ${BASHRC} ]; then
+if [ -f ${BASHRC} ]
+then
     mv ${BASHRC} ${BASHRC}.backup$(date +"%Y%m%d_%H%M%S")
 fi
 
 cp ${SCRIPT_DIR}/environment/.bashrc ${BASHRC}
 
 . ${BASHRC}
-echo $(. ${BASHRC})
-echo "Finished: Now run:"
-echo ". $BASHRC"
+reset

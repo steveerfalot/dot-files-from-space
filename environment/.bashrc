@@ -3,7 +3,11 @@ set -o vi
 shopt -s checkwinsize
 shopt -s globstar
 
-PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\t \[$(tput setaf 2)\]\u@\h \w\[$(tput sgr0)\]\[$(tput setaf 6)\]\[$(tput bold)\] \$ \[$(tput sgr0)\]"
+PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\t\n"
+PS1+="\[$(tput setaf 2)\]\u@\h \w\[$(tput sgr0)\] "
+# PS1+="( $(git_color) )"
+PS1+="\[$(tput setaf 6)\]\[$(tput bold)\] \$ "
+PS1+="\[$(tput sgr0)\]"
 
 xset b off
 export TERM=linux

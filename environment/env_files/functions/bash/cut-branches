@@ -14,22 +14,27 @@ function cut-branches() {
     echo -e "Must pass in the REL ticket number and the version of the software"
     echo -e "source /<path-to-script>/cut-branches \n"
     echo -e "cut-branches REL-1234 2018.01.0"
-    exit 1
+    exit 2
   fi
 
-  BASE_DIR="/workspace/bh-env"
+  BASE_DIR="$WORKSPACE/bh-env"
 
   REPOS=(CFusionMX7 montage mosaic caldera okemo core-services)
   #REPOS=(mosaic)
 
-  for i in ${REPOS[@]}; do
+  for i in ${REPOS[@]}
+  do
     cd ${BASE_DIR}/${i}
     git checkout development
     git up
-    if ${rebase}; then
+    if [ -z ${rebase} ] && [ ${rebase} -ne 'false' ]
+    then
       git checkout release/${REL}
       git rebase development
-      git push
+      if [ -z ${dryrun} ] && [ ${dryrun} -ne 'false' ]
+      then
+        git push
+      fi
     else
       git checkout -b release/${REL}
       if [ -f package.json ]; then
@@ -40,12 +45,18 @@ function cut-branches() {
     fi
     git checkout master
     git merge --no-ff release/${REL} --no-edit
-    git push
+
     git fetch --prune origin +refs/tags/*:refs/tags/*
     git fetch -t
-    git tag -a ${VERSION} -m "$VERSION"
-    git tag -a ${REL} -m "$REL"
-    #git push --tags
-    #git push origin :release/$REL
+    git tag ${VERSION}
+    git tag ${REL}
+    if [ -z ${dryrun} ] && [ ${dryrun} -ne 'false' ]
+    then
+      git push
+      git push --tags
+      git push origin :release/${REL}
+    fi
   done
 }
+
+cut-branches "${@}"
