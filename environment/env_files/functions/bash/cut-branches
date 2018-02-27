@@ -17,7 +17,7 @@ function cut-branches() {
     exit 2
   fi
 
-  BASE_DIR="$WORKSPACE/bh-env"
+  BASE_DIR="/workspace/bh-env"
 
   REPOS=(CFusionMX7 montage mosaic caldera okemo core-services)
   #REPOS=(mosaic)
@@ -45,18 +45,15 @@ function cut-branches() {
     fi
     git checkout master
     git merge --no-ff release/${REL} --no-edit
-
+    git push
     git fetch --prune origin +refs/tags/*:refs/tags/*
     git fetch -t
     git tag ${VERSION}
     git tag ${REL}
     if [ -z ${dryrun} ] && [ ${dryrun} -ne 'false' ]
     then
-      git push
       git push --tags
       git push origin :release/${REL}
     fi
   done
 }
-
-cut-branches "${@}"
