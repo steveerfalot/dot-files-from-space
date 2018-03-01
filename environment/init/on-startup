@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Open Terminals
+gnome-terminal --tab \
+                  --working-directory="/workspace/bbo/backoffice/www" \
+                --tab \
+                  --working-directory="/workspace/bbo/backoffice-www" \
+                --tab \
+                  --working-directory="/workspace/dot-files-from-space" \
+                --tab \
+                --geometry '125x42+1800+0'
+
+gnome-terminal --geometry '125x40+1800-0' \
+                --working-directory="/workspace/bbo/backoffice-www/"
+
+gnome-terminal --geometry '125x42-1750-0' \
+                --tab \
+                  --working-directory="/workspace/bbo/backoffice-www/" \
+                --tab \
+                  --working-directory="/workspace/bbo/backoffice/www"
+
+# Start VM
+vmrun -T player start /home/mparks/Downloads/bbo_vm/2016.10/BBO\ 2016.10.vmx nogui
+
+# Start IntelliJ
+XMODIFIERS= && nohup sh /ide/idea/bin/idea.sh &> /dev/null &
+
+# Firefox
+firefox %u
+
+# Chromium
+chromium-browser %U
